@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{39BA0C6A-F386-4D3E-AB4F-83369C5206AE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ServiceLib.Contracts</RootNamespace>
+    <AssemblyName>ServiceLib.Contracts</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BankService\AddBankContract.cs" />
+    <Compile Include="BankService\BankItemContract.cs" />
+    <Compile Include="BankService\DelBankContract.cs" />
+    <Compile Include="BlockChainExchangeService\AddBankContract.cs" />
+    <Compile Include="BlockChainExchangeService\CloseDealContract.cs" />
+    <Compile Include="BlockChainExchangeService\CreateDocContract.cs" />
+    <Compile Include="BlockChainExchangeService\DropBankContract.cs" />
+    <Compile Include="DealService\AddDealContract.cs" />
+    <Compile Include="DealService\CloseDealContract.cs" />
+    <Compile Include="DealService\DealItemContract.cs" />
+    <Compile Include="DealService\GetDealContract.cs" />
+    <Compile Include="IBlockChainExchangeService.cs" />
+    <Compile Include="IIntegrationService.cs" />
+    <Compile Include="ILogService.cs" />
+    <Compile Include="IntegrationService\DealClosedContract.cs" />
+    <Compile Include="IntegrationService\DocClosedContract.cs" />
+    <Compile Include="IntegrationService\DocCreatedContract.cs" />
+    <Compile Include="IntegrationService\DocReceivedContract.cs" />
+    <Compile Include="IStorageService.cs" />
+    <Compile Include="StorageService\Enums\EDocState.cs" />
+    <Compile Include="IBankService.cs" />
+    <Compile Include="IDealService.cs" />
+    <Compile Include="IDocService.cs" />
+    <Compile Include="DocService\AddDocContract.cs" />
+    <Compile Include="DocService\DocItemContract.cs" />
+    <Compile Include="DocService\GetDocContract.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceCore.cs" />
+    <Compile Include="StorageService\TBank.cs" />
+    <Compile Include="StorageService\TDeal.cs" />
+    <Compile Include="StorageService\TDoc.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="LogService\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -3,3 +3,9 @@
 ################################################################################
 
 /WebApp/bin
+/WebApp/obj/Debug
+/ServiceLib.Contractd/obj/Debug
+/ServiceLib.Contractd/bin/Debug
+/ServiceLib/obj/Debug
+/ServiceLib/bin/Debug
+/.vs

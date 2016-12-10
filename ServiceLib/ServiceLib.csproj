@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BankService.cs" />
+    <Compile Include="Consts.cs" />
     <Compile Include="DealService.cs" />
     <Compile Include="DocService.cs" />
     <Compile Include="JSONFileStorageService.cs" />

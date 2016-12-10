@@ -23,7 +23,7 @@
 
             var sum = $("#tran_sum").val();
 
-            $.get('/Doc/Create?from=' + from_bic + '&to=' + to_bic + '&accfrom=' + acc_from + '&accto=' + acc_to + '&sum=' + sum,
+            $.get('/Doc/Create?from=' + from_bic + '&to=' + to_bic + '&accf=' + acc_from + '&acct=' + acc_to + '&sum=' + sum,
                 '',
                 (data, stat, xhr) =>
                 {
@@ -44,7 +44,7 @@
             <select id="from_bank">
                 @foreach (var bank in ViewBag.Banks)
                 {
-                    <option value="@bank.Bic">@( bank.Name + " " + bank.IsTrustExchangeMember ? "(connected)" : "" )</option>
+                    <option value="@bank.Bic">@bank.Name </option>
                 }
             </select>
             <br />
@@ -52,7 +52,7 @@
             <select id="to_bank">
                 @foreach (var bank in ViewBag.Banks)
                 {
-                    <option value="@bank.Bic">@( bank.Name + " " + bank.IsTrustExchangeMember ? "(connected)" : "" )</option>
+                    <option value="@bank.Bic">@bank.Name</option>
                 }
             </select>
             <br />

@@ -13,7 +13,7 @@ namespace ServiceLib
         string idname;
         public JSONFileStorageService(string filename )
         {
-            fn = Path.Combine("D:\\TrustExchange", fn + ".json");
+            fn = Path.Combine("D:\\TrustExchange", filename + ".json");
             this.idname = "Id";
         }
 
@@ -59,9 +59,13 @@ namespace ServiceLib
 
         public bool Set<T>(T item)
         {
-            string[] data = File.ReadAllLines(fn);
-            List<T> items = GetAll<T>().ToList();
-            items  = items.Where(t => getid<T>(t) != getid<T>(item)).ToList();
+            List<T> items = new List<T>();
+            if (File.Exists(fn))
+            {
+                string[] data = File.ReadAllLines(fn);
+                items = GetAll<T>().ToList();
+                items = items.Where(t => getid<T>(t) != getid<T>(item)).ToList();
+            }
             List<string> datalines = new List<string>();
 
             foreach(var e in items)
@@ -70,7 +74,7 @@ namespace ServiceLib
             }
 
             datalines.Add(JsonConvert.SerializeObject(item));
-
+            File.WriteAllLines(fn, datalines.ToArray());
             return true;
         }
     }

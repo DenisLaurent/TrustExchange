@@ -22,6 +22,8 @@ namespace TrustExchangeWebApp.Controllers
             ServiceCore.docservice.addDoc(
                 new AddDocContract()
                 {
+
+                    OwnerBic = from,
                     Id = Guid.NewGuid().ToString(),
                     Date = DateTime.Now,
                     FromAcc = accf,

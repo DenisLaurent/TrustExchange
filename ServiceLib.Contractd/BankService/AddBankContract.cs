@@ -2,6 +2,6 @@
 {
     public class AddBankContract
     {
-        public string Bic { get; set; }
+        public string Bic { get; set; } 
     }
 }

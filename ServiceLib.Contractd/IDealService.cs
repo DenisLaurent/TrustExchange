@@ -11,11 +11,11 @@ namespace ServiceLib.Contracts
         /// <param name="request"></param>
         void AddDeal(AddDealContract request);
         /// <summary>
-        /// Получить список кредитных сделок по БИК банка
+        /// Получить список кредитных сделок
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        IEnumerable<DealItemContract> GetDeals(GetDealContract request);
+        IEnumerable<DealItemContract> GetDeals();
         /// <summary>
         /// Закрыть кредитную сделку по факту получения денег из РКЦ
         /// </summary>

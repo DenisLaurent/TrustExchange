@@ -4,6 +4,7 @@ namespace ServiceLib.Contracts.StorageService
 {
     public class TDoc
     {
+        public string Id { get; set; }
         public string BicFrom { get; set; }
         public string BicTo { get; set; }
         public decimal Sum { get; set; }

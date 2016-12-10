@@ -9,25 +9,64 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Интернет Банк: Новый перевод</title>
+    <script src="~/scripts/jquery-3.1.1.js"></script>
 </head>
 <body>
-    <div> 
-    Интернет банк<hr/>
+    <script>
+        function createDoc()
+        {
+            var from_bic =  $("#from_bank").val();
+            var to_bic = $("#to_bank").val();
+
+            var acc_from = $("#from_acc").val();
+            var acc_to = $("#to_acc").val();
+
+            var sum = $("#tran_sum").val();
+
+            $.get('/Doc/Create?from=' + from_bic + '&to=' + to_bic + '&accfrom=' + acc_from + '&accto=' + acc_to + '&sum=' + sum,
+                '',
+                (data, stat, xhr) =>
+                {
+                    alert('Платеж создан');
+                });
+        }
+    </script>
 
 
 
-    <form action="/Doc/">
-        Банк отправитель:
-        <br/>
-        Банк получатель:
-        <br />
-        Клиент:
-        <br />
-        Сумма: 
-        <br />
-        <input type="submit" value="Создать перевод" />
-    </form>
+    <div>
+        Интернет банк<hr />
 
+
+
+        <div>
+            Банк отправитель:
+            <select id="from_bank">
+                @foreach (var bank in ViewBag.Banks)
+                {
+                    <option value="@bank.Bic">@( bank.Name + " " + bank.IsTrustExchangeMember ? "(connected)" : "" )</option>
+                }
+            </select>
+            <br />
+            Банк получатель:
+            <select id="to_bank">
+                @foreach (var bank in ViewBag.Banks)
+                {
+                    <option value="@bank.Bic">@( bank.Name + " " + bank.IsTrustExchangeMember ? "(connected)" : "" )</option>
+                }
+            </select>
+            <br />
+            Со счета:
+            <input type="text" id="from_acc" value="40702810370010000000" />
+            <br />
+            На счет:
+            <input type="text" id="to_acc" value="40702810370020000000" />
+            <br />
+            Сумма:
+            <input type="text" id="tran_sum" value="1000" />
+            <br />
+            <button onclick="createDoc()">Создать перевод</button>
+        </div>
     </div>
 </body>
 </html>

@@ -1,0 +1,72 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Список банков. Подключение к сети TrustExchange</title>
+    <script src="~/scripts/jquery-3.1.1.js"></script>
+</head>
+
+<body>
+    <script>
+    function disconnectBank( bic)
+    {
+        $.get('/Bank/Disconnect?bic=' + bic, '', (data, stat, xhr) => {
+            window.location.reload();
+        });
+    }
+    function connectBank(bic) {
+        $.get('/Bank/Connect?bic=' + bic, '', (data, stat, xhr) => {
+            window.location.reload();
+        });
+    }
+    </script>
+    <div>
+        Банки подключенные к сети <b>TrustExchange</b>:<br />
+        <table>
+            <tr>
+                <td>БИК</td>
+                <td>Название</td>
+                <td>Действия</td>
+            </tr>
+
+            @foreach (var bank in ViewBag.TrustExchangeBankList)
+            {
+                <tr>
+                    <td>@bank.Bic</td>
+                    <td>@bank.Name</td>
+                    <td><a href="#" onclick="disconnectBank('@bank.Bic')">Отключить</a></td>
+                </tr>
+            }
+
+        </table>
+        <hr />
+        Банк не подключенные к сети:<br />
+        <table>
+            <tr>
+                <td>БИК</td>
+                <td>Название</td>
+                <td>Действия</td>
+            </tr>
+
+            @foreach (var bank in ViewBag.BankList)
+            {
+                <tr>
+                    <td>@bank.Bic</td>
+                    <td>@bank.Name</td>
+                    <td><a href="#" onclick="connectBank('@bank.Bic')">Подключить</a></td>
+                </tr>
+            }
+
+        </table>
+        <hr />
+
+
+    </div>
+</body>
+</html>

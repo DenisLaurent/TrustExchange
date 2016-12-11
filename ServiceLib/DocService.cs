@@ -119,7 +119,7 @@ namespace ServiceLib
 
         public void notifyCreditDealClosed(string transactionaddr)
         {
-            var doc = db.GetAll<TDoc>().Where(d => d.TransactionAddr == transactionaddr).FirstOrDefault();
+            var doc = db.GetAll<TDoc>().Where(d => d.Id == transactionaddr).FirstOrDefault();
             doc.dealisdone = true;
             db.Set(doc);
         }

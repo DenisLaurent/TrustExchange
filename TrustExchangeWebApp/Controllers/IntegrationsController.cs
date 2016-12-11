@@ -35,9 +35,9 @@ namespace TrustExchangeWebApp.Controllers
         ///  БЧ оповещает банк который отправлял деньги, что банк получатель подтвердил получение денег
         /// </summary>
         /// <returns></returns>
-        public ActionResult DocClosed(string transactionaddr)
+        public ActionResult DocClosed(string docid)
         {
-            ServiceCore.integrationservice.DocClosed(new DocClosedContract() { transactionaddr = transactionaddr });
+            ServiceCore.integrationservice.DocClosed(new DocClosedContract() { transactionaddr = docid });
             return new JsonResult() { Data = "{}" };
         }
         /// <summary>

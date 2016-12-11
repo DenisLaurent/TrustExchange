@@ -17,3 +17,8 @@
 /TrustExchangeWebApp/obj/Release
 /ServiceLib/bin/Release
 /ServiceLib/obj/Release
+/packages/Microsoft.Azure.KeyVault.Core.1.0.0
+/packages/Microsoft.Data.Edm.5.8.1
+/packages/Microsoft.Data.OData.5.8.1
+/packages/Microsoft.Data.Services.Client.5.8.1
+/packages

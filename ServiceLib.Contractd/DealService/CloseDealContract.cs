@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ServiceLib.Contracts.DealService
+﻿namespace ServiceLib.Contracts.DealService
 {
     public class CloseDealContract
     {
+        public string docid { get; set; }
     }
 }

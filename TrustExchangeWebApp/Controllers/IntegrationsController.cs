@@ -17,7 +17,7 @@ namespace TrustExchangeWebApp.Controllers
         /// <returns></returns>
         public ActionResult DocCreated(string docid, string transactionaddr)
         {
-           // ServiceCore.integrationservice.DocCreated(new DocCreatedContract() { docid = docid, transactionaddr = transactionaddr });
+            ServiceCore.integrationservice.DocCreated(new DocCreatedContract() { docid = docid, transactionaddr = transactionaddr });
             return new JsonResult() { Data = "{}" };
         }
         /// <summary>
@@ -28,7 +28,7 @@ namespace TrustExchangeWebApp.Controllers
         /// <returns></returns>
         public ActionResult DocReceived(string doc_serialized, string smartcontractaddr)
         {
-           // ServiceCore.integrationservice.DocReceived(new DocReceivedContract() { doc_serialized = doc_serialized, smartcontractaddr = smartcontractaddr });
+            ServiceCore.integrationservice.DocReceived(new DocReceivedContract() { doc_serialized = doc_serialized, smartcontractaddr = smartcontractaddr });
             return new JsonResult() { Data = "{}" };
         }
         /// <summary>
@@ -37,7 +37,7 @@ namespace TrustExchangeWebApp.Controllers
         /// <returns></returns>
         public ActionResult DocClosed(string transactionaddr)
         {
-            //ServiceCore.integrationservice.DocClosed(new DocClosedContract() { transactionaddr = transactionaddr });
+            ServiceCore.integrationservice.DocClosed(new DocClosedContract() { transactionaddr = transactionaddr });
             return new JsonResult() { Data = "{}" };
         }
         /// <summary>
@@ -46,7 +46,7 @@ namespace TrustExchangeWebApp.Controllers
         /// <returns></returns>
         public ActionResult DealClosed(string smartcontractaddr)
         {
-            //ServiceCore.integrationservice.DealClosed(new DealClosedContract() { smartcontractaddr = smartcontractaddr });
+            ServiceCore.integrationservice.DealClosed(new DealClosedContract() { smartcontractaddr = smartcontractaddr });
             return new JsonResult() { Data = "{}" };
         }
 

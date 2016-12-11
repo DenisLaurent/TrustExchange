@@ -6,6 +6,7 @@ using ServiceLib.Contracts.StorageService;
 using System.Linq;
 using ServiceLib.Contracts.StorageService.Enums;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace ServiceLib
 {
@@ -78,7 +79,7 @@ namespace ServiceLib
                     BicFrom = d.BicFrom,
                     BicTo = d.BicTo,
                     DocOriginalId = d.Id,
-                    DocSerialized = JsonConvert.SerializeObject(d)
+                    DocSerialized = Convert.ToBase64String(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(d)))
                 }
                 );
 
@@ -93,13 +94,33 @@ namespace ServiceLib
                 db.Set(d);
 
 
-                // ServiceCore.dealservice.CloseDeal( new Contracts.DealService.CloseDealContract() {   })
+                ServiceCore.dealservice.CloseDeal(new Contracts.DealService.CloseDealContract()
+                {
 
-                //ServiceCore.exchangeservice.CloseDeal(new Contracts.BlockChainExchangeService.CloseDealContract()
-                //{
-                      
-                //});
+                    docid = id
+                });
+
+                var deal = ServiceCore.dealservice.GetDealByDocId(id);
+                ServiceCore.exchangeservice.CloseDeal(new Contracts.BlockChainExchangeService.CloseDealContract()
+                {
+                    smartcontractaddr = deal.smartcontractaddr
+
+                });
             }
+        }
+
+        public void updateDocTranAddr(string docid, string transactionaddr)
+        {
+            var docc = db.Get(docid);
+            docc.TransactionAddr = transactionaddr;
+            db.Set(docc);
+        }
+
+        public void notifyCreditDealClosed(string transactionaddr)
+        {
+            var doc = db.GetAll<TDoc>().Where(d => d.TransactionAddr == transactionaddr).FirstOrDefault();
+            doc.dealisdone = true;
+            db.Set(doc);
         }
     }
 }

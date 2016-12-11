@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ServiceLib.Contracts.IntegrationService;
+using ServiceLib.Contracts.StorageService;
 
 namespace ServiceLib
 {
@@ -12,12 +13,12 @@ namespace ServiceLib
     {
         public void DealClosed(DealClosedContract request)
         {
-            throw new NotImplementedException();
+            ServiceCore.dealservice.updateDealIsClosedBySCaddr(request.smartcontractaddr);
         }
 
         public void DocClosed(DocClosedContract request)
         {
-            throw new NotImplementedException();
+            ServiceCore.docservice.notifyCreditDealClosed(request.transactionaddr);
         }
         /// <summary>
         /// уведомление банка отправителя о том что докусент попал в БЧ, проставляем ему addr транзакции БЧ
@@ -25,12 +26,33 @@ namespace ServiceLib
         /// <param name="request"></param>
         public void DocCreated(DocCreatedContract request)
         {
-            throw new NotImplementedException();
+            ServiceCore.docservice.updateDocTranAddr(request.docid, request.transactionaddr);
         }
 
         public void DocReceived(DocReceivedContract request)
         {
-            throw new NotImplementedException();
+
+            var docbytes = Convert.FromBase64String(request.doc_serialized);
+
+            var jsondoc = Encoding.UTF8.GetString(docbytes);
+
+            var d = Newtonsoft.Json.JsonConvert.DeserializeObject<TDoc>(jsondoc);
+
+            ServiceCore.dealservice.AddDeal(new Contracts.DealService.AddDealContract() {
+                  
+                Id = Guid.NewGuid().ToString(),
+                docid = d.Id,
+                Sum = d.Sum,
+                from = d.BicFrom,
+                to = d.BicTo,
+                froma = d.AccountNumberFrom,
+                isactive = true,
+                toa = d.AccountNumberTo,
+                dt = d.DocDate,
+                ownerbank = d.BicTo,
+                smartcontractaddr =request.smartcontractaddr
+
+            }); 
         }
     }
 }

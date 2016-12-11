@@ -1,5 +1,6 @@
-﻿using ServiceLib.Contracts.DealService; 
-using System.Collections.Generic; 
+﻿using ServiceLib.Contracts.DealService;
+using ServiceLib.Contracts.StorageService;
+using System.Collections.Generic;
 
 namespace ServiceLib.Contracts
 {
@@ -10,6 +11,8 @@ namespace ServiceLib.Contracts
         /// </summary>
         /// <param name="request"></param>
         void AddDeal(AddDealContract request);
+        void updateDealIsClosedBySCaddr(string smartcontractaddr);
+
         /// <summary>
         /// Получить список кредитных сделок
         /// </summary>
@@ -21,5 +24,6 @@ namespace ServiceLib.Contracts
         /// </summary>
         /// <param name="request"></param>
         void CloseDeal(CloseDealContract request);
+        TDeal GetDealByDocId(string id);
     }
 }

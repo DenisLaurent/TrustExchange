@@ -15,5 +15,6 @@ namespace ServiceLib.Contracts.StorageService
         public string AccountNumberTo { get; set; }
         public EDocState State { get; set; }
         public string TransactionAddr { get; set; }
+        public bool dealisdone { get; set; }
     }
 }

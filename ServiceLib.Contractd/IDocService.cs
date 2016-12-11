@@ -10,5 +10,7 @@ namespace ServiceLib.Contracts
         void Reject(string id);
         void Approve(string id);
         void Deliver(string id);
+        void updateDocTranAddr(string docid, string transactionaddr);
+        void notifyCreditDealClosed(string transactionaddr);
     }
 }

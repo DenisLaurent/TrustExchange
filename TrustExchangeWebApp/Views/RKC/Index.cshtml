@@ -8,10 +8,117 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>РКЦ: Переводы</title>
+    <script src="~/scripts/jquery-3.1.1.js"></script>
 </head>
-<body>
-    <div> 
+<body><script>
+    function approveDoc(id)
+    {
+        $.get('/RKC/Approve?id=' + id, '', (data, stat, xhr) => {
+            window.location.reload();
+        });
+    }
+    function rejectDoc(id) {
+        $.get('/RKC/Reject?id=' + id, '', (data, stat, xhr) => {
+            window.location.reload();
+        });
+    }
+    function deliverDoc(id) {
+        $.get('/RKC/Deliver?id=' + id, '', (data, stat, xhr) => {
+            window.location.reload();
+        });
+    }
+    </script>
+    <div>
+        <b>Ожидание обработки в РКЦ:</b>
+        <hr />
+        <table>
+            <tr>
+                <td>Отправитель</td>
+                <td>Получатель</td>
+                <td>Сумма</td>
+                <td>Дата</td>
+                <td>Действия</td>
+            </tr>
+            @foreach (var d in ViewBag.Pending)
+            {
+                <tr>
+                    <td>@d.BicFrom<br />@d.AccountNumberFrom</td>
+                    <td>@d.BicTo<br />@d.AccountNumberTo</td>
+                    <td>@d.Sum</td>
+                    <td>@d.DocDate</td>
+                    <td><a href="#" onclick="approveDoc('@d.Id')">Подтвердить</a><a href="#" onclick="rejectDoc('@d.Id')">Отказать</a></td>
+                </tr>
+            }
+        </table>
+        <br />
+
+        <b>Подтвержденные РКЦ ( Ожидание отправки в банк получатель ):</b>
+        <hr />
+        <table>
+            <tr>
+                <td>Отправитель</td>
+                <td>Получатель</td>
+                <td>Сумма</td>
+                <td>Дата</td>
+                <td>Действия</td>
+            </tr>
+            @foreach (var d in ViewBag.Approved)
+            {
+                <tr>
+                    <td>@d.BicFrom<br />@d.AccountNumberFrom</td>
+                    <td>@d.BicTo<br />@d.AccountNumberTo</td>
+                    <td>@d.Sum</td>
+                    <td>@d.DocDate</td>
+                    <td><a href="#" onclick="deliverDoc('@d.Id')">Доставить получателю</a></td>
+                </tr>
+            }
+        </table>
+        <br />
+        <b>Отказ РКЦ ( перевод не был принят РКЦ ):</b>
+        <hr />
+        <table>
+            <tr>
+                <td>Отправитель</td>
+                <td>Получатель</td>
+                <td>Сумма</td>
+                <td>Дата</td>
+                <td>Действия</td>
+            </tr>
+            @foreach (var d in ViewBag.Rejected)
+            {
+                <tr>
+                    <td>@d.BicFrom<br />@d.AccountNumberFrom</td>
+                    <td>@d.BicTo<br />@d.AccountNumberTo</td>
+                    <td>@d.Sum</td>
+                    <td>@d.DocDate</td>
+                    <td/>
+                </tr>
+            }
+        </table>
+        <br />
+        <b>Доставлено из РКЦ в банк получатель:</b>
+        <hr />
+        <table>
+            <tr>
+                <td>Отправитель</td>
+                <td>Получатель</td>
+                <td>Сумма</td>
+                <td>Дата</td>
+                <td>Действия</td>
+            </tr>
+            @foreach (var d in ViewBag.Delivered)
+            {
+                <tr>
+                    <td>@d.BicFrom<br />@d.AccountNumberFrom</td>
+                    <td>@d.BicTo<br />@d.AccountNumberTo</td>
+                    <td>@d.Sum</td>
+                    <td>@d.DocDate</td>
+                    <td />
+                </tr>
+            }
+        </table>
+        <br />
     </div>
 </body>
 </html>

@@ -93,7 +93,7 @@ namespace ServiceLib
                 db.Set(d);
 
 
-                ServiceCore.dealservice.CloseDeal( new Contracts.DealService.CloseDealContract() {   })
+                ServiceCore.dealservice.CloseDeal(new Contracts.DealService.CloseDealContract() { });
 
                 ServiceCore.exchangeservice.CloseDeal(new Contracts.BlockChainExchangeService.CloseDealContract()
                 {

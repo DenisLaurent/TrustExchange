@@ -76,8 +76,9 @@ namespace ServiceLib
 
                 ServiceCore.exchangeservice.CreateDoc(new Contracts.BlockChainExchangeService.CreateDocContract()
                 {
-                    BicFrom = d.BicFrom,
-                    BicTo = d.BicTo,
+                    BicFrom = consts.webhost,//d.BicFrom,
+                    BicTo = consts.webhost,
+                    //d.BicTo,
                     DocOriginalId = d.Id,
                     DocSerialized = Convert.ToBase64String(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(d)))
                 }

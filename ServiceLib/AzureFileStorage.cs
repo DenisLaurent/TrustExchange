@@ -39,7 +39,7 @@ namespace ServiceLib
             foreach (var d in data)
             {
                 T inst = JsonConvert.DeserializeObject<T>(d);
-                string idvalue = getid(d);
+                string idvalue = getid(inst);
                 if (idvalue == id)
                     return inst;
             }
@@ -47,9 +47,9 @@ namespace ServiceLib
         }
 
 
-        string getid<T>(T obj)
+        string getid(object obj)
         {
-            Type t = typeof(T);
+            Type t = obj.GetType();
             var prop = t.GetProperty(idname);
             return prop.GetValue(obj).ToString();
         }
@@ -173,7 +173,7 @@ namespace ServiceLib
             var dB = GetDb(_fileName);
             string[] data = dB.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
             items = GetAll<T>().ToList();
-            items = items.Where(t => getid<T>(t) != getid<T>(item)).ToList();
+            items = items.Where(t => getid(t) != getid(item)).ToList();
             List<string> datalines = new List<string>();
 
             foreach (var e in items)

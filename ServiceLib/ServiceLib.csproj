@@ -48,6 +48,7 @@
     <Compile Include="Consts.cs" />
     <Compile Include="DealService.cs" />
     <Compile Include="DocService.cs" />
+    <Compile Include="IntegrationService.cs" />
     <Compile Include="JSONFileStorageService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

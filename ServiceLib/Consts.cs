@@ -2,6 +2,6 @@
 {
     public class consts
     {
-        public static string webhost = "http://localhost/";
+        public static string webhost = "http://tewp.azurewebsites.net";
     }
 }

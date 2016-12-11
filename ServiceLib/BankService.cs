@@ -19,7 +19,7 @@ namespace ServiceLib
             var bankobject = db.Get(request.Bic);
             db.Set(new TBank() { Id = request.Bic, Bic = request.Bic, IsTrustExchangeMember = true, Name = bankobject.Name });
 
-            ServiceCore.exchangeservice.AddBank(new Contracts.BlockChainExchangeService.AddBankContract() { Bic = request.Bic, ApiHost = consts.webhost });
+         //   ServiceCore.exchangeservice.AddBank(new Contracts.BlockChainExchangeService.AddBankContract() { Bic = request.Bic, ApiHost = consts.webhost });
         }
 
         public void DelBank(DelBankContract request)
@@ -27,7 +27,7 @@ namespace ServiceLib
             var bankobject = db.Get(request.Bic);
             db.Set(new TBank() { Id = request.Bic, Bic = request.Bic, IsTrustExchangeMember = false, Name = bankobject.Name });
 
-            ServiceCore.exchangeservice.DropBank(new Contracts.BlockChainExchangeService.DropBankContract() { Bic = request.Bic });
+          //  ServiceCore.exchangeservice.DropBank(new Contracts.BlockChainExchangeService.DropBankContract() { Bic = request.Bic });
         }
 
         public IEnumerable<BankItemContract> GetBanks()

@@ -6,7 +6,7 @@ namespace ServiceLib.Contracts
     {
         void CreateDoc(CreateDocContract request);
         void CloseDeal(CloseDealContract request);
-        void AddBank(AddBankContract request);
-        void DropBank(DropBankContract request);
+        //void AddBank(AddBankContract request);
+        //void DropBank(DropBankContract request);
     }
 }

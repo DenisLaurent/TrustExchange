@@ -11,3 +11,9 @@
 /.vs
 /TrustExchangeWebApp/obj/Debug
 /TrustExchangeWebApp/bin
+/ServiceLib.Contractd/bin/Release
+/ServiceLib.Contractd/obj/Release
+/TrustExchangeWebApp/obj/Release/Package
+/TrustExchangeWebApp/obj/Release
+/ServiceLib/bin/Release
+/ServiceLib/obj/Release
